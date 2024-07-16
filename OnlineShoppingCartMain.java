@@ -10,12 +10,15 @@ public class OnlineShoppingCartMain {
         executorService.submit(() -> {
             shoppingCartService.addProduct(new Product("Laptop", 50000));
             shoppingCartService.addProduct(new Product("SmartPhone", 25000));
+            shoppingCartService.addProduct(new Product("Camera", 250000));
         });
 
         executorService.submit(() -> {
             try {
                 TimeUnit.SECONDS.sleep(1);
                 shoppingCartService.removeProduct(new Product("Laptop", 50000));
+                System.out.println("PRoducts after removing one Product : ");
+                shoppingCartService.getCartItems().forEach(cartItems -> System.out.println(cartItems.getName()));
             } catch (InterruptedException interruptedException) {
                 System.out.println(interruptedException.getMessage());
             }
